@@ -45,10 +45,14 @@ export const AuthService = {
         disableDeviceFallback: true,
       });
 
-      return {
-        success: result.success,
-        error: result.error,
-      };
+      if (result.success) {
+        return { success: true };
+      } else {
+        return {
+          success: false,
+          error: result.error,
+        };
+      }
     } catch (error) {
       return {
         success: false,
